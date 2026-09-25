@@ -1,0 +1,4 @@
+{
+    "pytest_runner.pytest_exec_docker": "docker compose exec web uv run pytest",
+    "pytest_runner.check_config": true
+}

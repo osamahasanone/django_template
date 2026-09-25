@@ -1,0 +1,28 @@
+# Only files inside template/ are copied into new projects.
+_subdirectory: template
+
+project_name:
+  type: str
+  help: Project name (lowercase, underscores, e.g. my_project)
+  validator: "{% if not project_name %}Project name is required{% endif %}"
+
+description:
+  type: str
+  help: Description
+  validator: "{% if not description %}Description is required{% endif %}"
+
+python_version:
+  type: str
+  help: Python version
+  default: "3.14"
+
+# Run inside the new project after its files are created.
+_tasks:
+  - git init
+  - uv add django python-dotenv "psycopg[binary]" celery django-celery-results redis
+  - uv add --dev ruff ty pytest pytest-django factory-boy
+  - >-
+    printf "\nDJANGO_SECRET_KEY='%s'\n" "$(uv run python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())')" >> .env
+  - prek install
+  - uv run ruff check . --fix
+  - uv run ruff format .
