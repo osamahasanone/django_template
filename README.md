@@ -14,7 +14,7 @@ Only the `template/` folder is copied into new projects. This README and `copier
 ## Create a new project
 
 ```bash
-uvx copier copy --trust gh:YOUR-USERNAME/django-template ~/Desktop/my_project
+uvx copier copy --trust gh:osamahasanone/django_template ~/Desktop/my_project
 ```
 
 Copier asks for:
