@@ -4,7 +4,7 @@ A [Copier](https://copier.readthedocs.io) template for new Django projects with 
 
 Only the `template/` folder is copied into new projects. This README and `copier.yml` stay here.
 
-## Requirements (on your Mac)
+## Requirements
 
 - [uv](https://docs.astral.sh/uv/)
 - [prek](https://github.com/j178/prek), for the Git hooks
