@@ -1,6 +1,6 @@
 # Django project template
 
-A [Copier](https://copier.readthedocs.io) template for new Django projects with uv, PostgreSQL, Redis, Celery, Docker Compose, ruff, ty, prek and pytest.
+A [Copier](https://copier.readthedocs.io) template for new Django projects with uv, PostgreSQL, Redis, Celery, Docker Compose, ruff, ty, prek, pytest, Django Silk and Django Extensions.
 
 Only the `template/` folder is copied into new projects. This README and `copier.yml` stay here.
 
@@ -40,7 +40,7 @@ docker compose exec web uv run python manage.py migrate
 docker compose exec web uv run python manage.py createsuperuser
 ```
 
-Open http://localhost:8000/admin and log in.
+Open http://localhost:8000/admin and log in, and http://localhost:8000/silk/ to see profiled requests and SQL queries.
 
 ## What's in a new project
 
@@ -48,7 +48,8 @@ Open http://localhost:8000/admin and log in.
 |---|---|
 | `pyproject.toml` | Project metadata, ruff and pytest settings |
 | `.env` / `.env.example` | Real local values (never committed) / the list of variables to set (committed) |
-| `config/settings.py` | Reads `.env`, uses PostgreSQL, configures Celery |
+| `config/settings.py` | Reads `.env`, uses PostgreSQL, configures Celery, enables Silk when `DEBUG` is on |
+| `config/urls.py` | Admin, plus `/silk/` when `DEBUG` is on |
 | `config/celery.py` | Creates the Celery app |
 | `Dockerfile`, `.dockerignore` | Image for `web` and `celery` |
 | `compose.yaml` | `web` (Django), `celery` (worker), `db` (PostgreSQL), `redis` (broker), with healthchecks |
@@ -80,6 +81,14 @@ docker compose exec web uv run pytest -v
 ```
 
 Pytest Runner (VS Code extension): in *Preferences: Open Keyboard Shortcuts*, set `pytest-runner.run-test-docker` to `Cmd+Q Cmd+1` and `pytest-runner.run-module-test-docker` to `Cmd+Q Cmd+2`.
+
+Django Silk (request and SQL profiler) is a dev dependency and only runs when `DJANGO_DEBUG=True`, so it never runs in production. Browse it at http://localhost:8000/silk/.
+
+Django Extensions adds management commands like `shell_plus`, `runserver_plus` and `graph_models`. `ipython` is installed too, for a better `shell_plus` REPL:
+
+```bash
+docker compose exec web uv run python manage.py shell_plus
+```
 
 DBeaver (database viewer):
 

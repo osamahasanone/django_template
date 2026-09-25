@@ -20,7 +20,7 @@ python_version:
 _tasks:
   - git init
   - uv add django python-dotenv "psycopg[binary]" celery django-celery-results redis
-  - uv add --dev ruff ty pytest pytest-django factory-boy
+  - uv add --dev ruff ty pytest pytest-django factory-boy django-silk django-extensions ipython
   - >-
     printf "\nDJANGO_SECRET_KEY='%s'\n" "$(uv run python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())')" >> .env
   - prek install

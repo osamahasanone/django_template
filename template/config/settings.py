@@ -23,6 +23,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django_celery_results",
+    "django_extensions",
 ]
 
 MIDDLEWARE = [
@@ -34,6 +35,10 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+
+if DEBUG:
+    INSTALLED_APPS.append("silk")
+    MIDDLEWARE.insert(-1, "silk.middleware.SilkyMiddleware")
 
 ROOT_URLCONF = "config.urls"
 

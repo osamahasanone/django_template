@@ -14,6 +14,7 @@
         { "label": "Django: createsuperuser", "type": "shell", "command": "docker compose exec web uv run python manage.py createsuperuser", "problemMatcher": [] },
         { "label": "Django: startapp", "type": "shell", "command": "docker compose exec web uv run python manage.py startapp ${input:appName}", "problemMatcher": [] },
         { "label": "Django: shell", "type": "shell", "command": "docker compose exec web uv run python manage.py shell", "problemMatcher": [] },
+        { "label": "Django: shell_plus", "type": "shell", "command": "docker compose exec web uv run python manage.py shell_plus", "problemMatcher": [] },
         { "label": "Django: dbshell", "type": "shell", "command": "docker compose exec db sh -c 'psql -U \"$POSTGRES_USER\" -d \"$POSTGRES_DB\"'", "problemMatcher": [] },
 
         // Celery
