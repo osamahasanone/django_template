@@ -71,29 +71,3 @@ Open http://localhost:8000/admin and log in, and http://localhost:8000/silk/ to 
    ```bash
    uvx copier update --trust
    ```
-
-## Optional tools
-
-Run all tests:
-
-```bash
-docker compose exec web uv run pytest -v
-```
-
-Pytest Runner (VS Code extension): in *Preferences: Open Keyboard Shortcuts*, set `pytest-runner.run-test-docker` to `Cmd+Q Cmd+1` and `pytest-runner.run-module-test-docker` to `Cmd+Q Cmd+2`.
-
-Django Silk (request and SQL profiler) is a dev dependency and only runs when `DJANGO_DEBUG=True`, so it never runs in production. Browse it at http://localhost:8000/silk/.
-
-Django Extensions adds management commands like `shell_plus`, `runserver_plus` and `graph_models`. `ipython` is installed too, for a better `shell_plus` REPL:
-
-```bash
-docker compose exec web uv run python manage.py shell_plus
-```
-
-DBeaver (database viewer):
-
-```bash
-brew install --cask dbeaver-community
-```
-
-Connect with host `localhost`, port `5432`, and the `POSTGRES_*` values from `.env`.
