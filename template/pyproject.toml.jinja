@@ -18,7 +18,9 @@ select = [
     "RUF",   # Ruff-specific rules
     "PL",    # Pylint
 ]
-ignore = []
+ignore = [
+    "RUF012",  # Django declares Meta/admin/serializer options as class-level lists
+]
 fixable = ["ALL"]
 unfixable = []
 
